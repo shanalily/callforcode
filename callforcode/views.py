@@ -30,9 +30,14 @@ def create_account():
 		username = request.form['username']
 		password = request.form['password']
 		cell_number = request.form['cell_number']
-		user = User(username, password, cell_number)
+		city = request.form['city']
+		state = request.form['state']
+		user = User(username, password, cell_number, city, state)
 		db.session.add(user)
 		db.session.commit()
+		login_user(user)
+		flash('Successfully created account')
+		return redirect(url_for('index'))
 	return render_template('create_account.html', form=form)
 
 @app.route('/logout')
