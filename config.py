@@ -1,2 +1,4 @@
+import os
+
 class Config(object):
-	SQL_ALCHEMY_DATABASE_URI = ""
+	SQLALCHEMY_DATABASE_URI = os.environ['SQLALCHEMY_DATABASE_URI']
