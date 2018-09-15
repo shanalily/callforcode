@@ -4,6 +4,11 @@
 		<title>Settings</title>
 	</head>
 	<body>
-		<h1>settings</h1>
+		<form>
+			{% for i in form %}
+				<input type="checkbox" name="option" value="0"> {{ i.label }}<br>
+			{% endfor %}
+			<input type="submit" value="Save">
+		</form>
 	</body>
 </html>

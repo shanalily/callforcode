@@ -9,6 +9,11 @@ class LoginForm(Form):
 class RegisterForm(Form):
 	username = TextField('Username', validators=[validators.required()])
 	password = TextField('Password', validators=[validators.required()])
+
+	first =  TextField('First Name', validators=[validators.required()])
+	last =  TextField('Last Name', validators=[validators.required()])
+
+	email = TextField('Email', validators=[validators.required()])
 	cell_number = TextField('Cell Number', validators=[validators.required()]) # for now
 
 	city = TextField('City', validators=[validators.required()])
@@ -35,4 +40,14 @@ class RegisterForm(Form):
 class AttributesForm(Form):
 	# qualities that user has that they can use to help others
 	# we will assign them to low, medium, or high risk zones for now
-	has_car = BooleanField("Has car")
+	car = BooleanField("I own a car")
+	truck = BooleanField("I own a truck")
+	boat = BooleanField("I own a boat")
+
+	food = BooleanField("I can provide food")
+
+	cpr = BooleanField("I am CPR trained")
+	emt = BooleanField("I am EMT trained")
+	contractor = BooleanField("I am a general contractor")
+
+	labor = BooleanField("I can provide manual labor")

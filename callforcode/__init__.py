@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.environ['CFC_SECRET_KEY']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://shanalily:frogandtoad@localhost/callforcode'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 login_manager = LoginManager()

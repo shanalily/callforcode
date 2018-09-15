@@ -1,5 +1,6 @@
 from callforcode import db
-from flask_bcrypt import generate_password_hash
+# from flask_bcrypt import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from callforcode import login_manager
 
 class User(db.Model):
@@ -9,14 +10,21 @@ class User(db.Model):
 	username = db.Column(db.String(200), unique=True, nullable=False)
 	password = db.Column(db.String(200), nullable=False)
 
+	first = db.Column(db.String(200), nullable=False)
+	last = db.Column(db.String(200), nullable=False)
+
+	email = db.Column(db.String(200), nullable=False)
 	cell_number = db.Column(db.String(14), nullable=False)
 
 	city = db.Column(db.String(200), nullable=False)
 	state = db.Column(db.String(200), nullable=False)
 
-	def __init__(self, username, password, cell_number, city, state):
+	def __init__(self, username, password, first, last, email, cell_number, city, state):
 		self.username = username
 		self.password = generate_password_hash(password)
+		self.first = first
+		self.last = last
+		self.email = email
 		self.cell_number = cell_number
 		self.city = city
 		self.state = state
@@ -34,14 +42,34 @@ class User(db.Model):
 		return self.id
 
 	def generate_password_hash(self, password):
-		return bcrypt.generate_password_hash(password)
+		return werkzeug.security.generate_password_hash(password)
 
 	def check_password_hash(self, password):
-		return bcrypt.check_password_hash(password)
+		return werkzeug.security.check_password_hash(password)
+
+class Attributes(db.Model):
+	__tablename__ = "attributes"
+
+	id = db.Column(db.Integer, primary_key=True)
+
+	car = db.Column(db.Boolean())
+	truck = db.Column(db.Boolean())
+	boat = db.Column(db.Boolean())
+
+	food = db.Column(db.Boolean())
+
+	cpr = db.Column(db.Boolean())
+	emt = db.Column(db.Boolean())
+	contractor = db.Column(db.Boolean())
+
+	labor = db.Column(db.Boolean())
 
 @login_manager.user_loader
 def load_user(id):
 	return User.query.get(int(id))
 
 def registered_user(username, password):
-	return User.query.filter_by(username=username, password=str(generate_password_hash(password))).first()
+	print('password', password)
+	print('hashed password', generate_password_hash(password))
+	print("username query", User.query.filter_by(username=username).all())
+	return User.query.filter_by(username=username, password=generate_password_hash(password)).first()
