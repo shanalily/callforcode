@@ -6,7 +6,7 @@ Install requirements:
 ```
 pip install -r requirements.txt
 ```
-Install and set up Postgres https://www.postgresql.org/download/. Create a database for
+Install and set up Postgres https://www.postgresql.org/download/. Create a database for project:
 ```
 CREATE DATABASE callforcode;
 ```
