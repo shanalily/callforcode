@@ -5,6 +5,15 @@ import csv
 all_counts = 0
 IDS = set()
 
+"""
+
+This program takes a directory of CSVs and comppiles them into one coheisve
+CSV of data. The data originally sampled was spread of many files, with data
+for a single storm often spread between more than one file. This program takes
+that problem into account and solves it
+
+"""
+
 class Data:
 
 	def __init__(self):
@@ -33,6 +42,11 @@ class Data:
 
 class DataContainer:
 
+	"""
+	Data structure to hold data objects, that also keeps track of header
+	titles as well
+	"""
+
 	def __init__(self):
 
 		self.titles = set()
@@ -54,6 +68,10 @@ class DataContainer:
 
 
 	def outputData(self):
+
+		"""
+		outputs all data in DataContainer into a single CSV
+		"""
 
 		outputfil = open("output.csv", "w")
 		headerString = ""
