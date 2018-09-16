@@ -16,9 +16,9 @@ def login():
 	if request.method == 'POST' and form.validate():
 		username = request.form['username']
 		password = request.form['password']
-		user = registered_user(username, password)
+		user = registered_user(username)
 		print("user", user)
-		if user is None:
+		if user is None or not user.check_password_hash(password):
 			flash('Invalid username or password')
 			return redirect(url_for('login'))
 		print(user)

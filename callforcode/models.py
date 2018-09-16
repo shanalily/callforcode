@@ -42,10 +42,10 @@ class User(db.Model):
 		return self.id
 
 	def generate_password_hash(self, password):
-		return werkzeug.security.generate_password_hash(password)
+		return generate_password_hash(password)
 
 	def check_password_hash(self, password):
-		return werkzeug.security.check_password_hash(password)
+		return check_password_hash(self.password, password)
 
 class Attributes(db.Model):
 	__tablename__ = "attributes"
@@ -68,8 +68,5 @@ class Attributes(db.Model):
 def load_user(id):
 	return User.query.get(int(id))
 
-def registered_user(username, password):
-	print('password', password)
-	print('hashed password', generate_password_hash(password))
-	print("username query", User.query.filter_by(username=username).all())
-	return User.query.filter_by(username=username, password=generate_password_hash(password)).first()
+def registered_user(username):
+	return User.query.filter_by(username=username).first()
