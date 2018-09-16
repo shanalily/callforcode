@@ -15,13 +15,15 @@ Install requirements:
 ```
 pip install -r requirements.txt
 ```
-Install and set up Postgres https://www.postgresql.org/download/. Create a database for project:
+Install and set up Postgres https://www.postgresql.org/download/. You can create a role and a password.
+Create a database for project:
 ```
 CREATE DATABASE callforcode;
 ```
 Set environment variable for database URL.
 ```
 export SQLALCHEMY_DATABASE_URI="postgres://<role>:<password>@localhost/<dbname>"
+export CFC_SECRET_KEY=0 # this can be anything for now
 ```
 
 To run the application:
