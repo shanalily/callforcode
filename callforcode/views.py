@@ -23,7 +23,7 @@ def login():
 			return redirect(url_for('login'))
 		login_user(user, True)
 		flash('Logged in successfully')
-		return redirect(next or url_for('index'))
+		return redirect(url_for('index'))
 	return render_template('login.html', form=form)
 
 @app.route('/create-account', methods=['GET', 'POST'])
@@ -67,7 +67,8 @@ def settings():
 	emt = False
 	contractor = False
 	labor = False
-	if request.method == 'POST' and form.validate():
+	if request.method == 'POST': # should have form.validate() but I'm not sure why validation is failing
+		userid = current_user.get_id()
 		if request.form.get('1'):
 			car = True
 		if request.form.get('2'):
@@ -83,13 +84,26 @@ def settings():
 		if request.form.get('7'):
 			contractor = True
 		if request.form.get('8'):
-			labor = False
-		attributes = Attributes(car, truck, boat, food, cpr, emt, contractor, labor)
-		db.session.add(attributes)
-		db.session.commit()
+			labor = True
+		distance = int(request.form['distance'])
+		attributes = Attributes.query.filter_by(userid=userid).first()
+		if attributes is None:
+			attributes = Attributes(userid, car, truck, boat, food, cpr, emt, contractor, labor, distance)
+			db.session.add(attributes)
+			db.session.commit()
+		else:
+			attributes.update(car, truck, boat, food, cpr, emt, contractor, labor, distance)
 		return redirect(url_for('index'))
 	return render_template('settings.html', form=form)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
 	return render_template('contact.html')
+
+@app.route('/needed')
+def needed():
+	return render_template('needed.html')
+
+@app.route('/watch')
+def watch():
+	return render_template('disaster_watch.html')

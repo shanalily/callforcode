@@ -53,6 +53,8 @@ class Attributes(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 
+	userid = db.Column(db.Integer, unique=True)
+
 	car = db.Column(db.Boolean())
 	truck = db.Column(db.Boolean())
 	boat = db.Column(db.Boolean())
@@ -64,6 +66,32 @@ class Attributes(db.Model):
 	contractor = db.Column(db.Boolean())
 
 	labor = db.Column(db.Boolean())
+	distance = db.Column(db.Integer())
+
+	def __init__(self, userid, car, truck, boat, food, cpr, emt, contractor, labor, distance):
+		self.userid = userid
+		self.car = car
+		self.truck = truck
+		self.boat = boat
+		self.food = food
+		self.cpr = cpr
+		self.emt = emt
+		self.contractor = contractor
+		self.labor = labor
+		self.distance = distance
+
+	# updating everything for the moment
+	def update(self, car, truck, boat, food, cpr, emt, contractor, labor, distance):
+		self.car = car
+		self.truck = truck
+		self.boat = boat
+		self.food = food
+		self.cpr = cpr
+		self.emt = emt
+		self.contractor = contractor
+		self.labor = labor
+		self.distance = distance
+		db.session.commit()
 
 @login_manager.user_loader
 def load_user(id):

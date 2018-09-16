@@ -1,19 +1,19 @@
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
-# from mpl_toolkits.basemap import Basemap
-# from geopy.geocoders import Nominatim
+from mpl_toolkits.basemap import Basemap
+from geopy.geocoders import Nominatim
 import os
-import psycopg2
-# from config import config
+#import psycopg2
+#from config import config
 
 #print(os.listdir("."))
 print ("Volunteer Network Visualizer") 
 
 red_cross_office_option = input("Show Red Cross Offices: Y or N?")
 
-textfile = open(os.path.dirname(os.path.realpath(__file__)) + "/us_cities_pop.txt")
-# textfile = open("/Users/mallorygaspard/Documents/Call For Code 2018/us_cities_pop.txt", encoding="utf-8")
+
+textfile = open("/Users/mallorygaspard/Documents/Call For Code 2018/us_cities_pop.txt", encoding="utf-8")
 lines = textfile.read().split(',')
 
 composite_list = [lines[x:x+15] for x in range(0, len(lines),15)]

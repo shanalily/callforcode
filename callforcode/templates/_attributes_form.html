@@ -1,0 +1,12 @@
+{% macro attributes_form(form) %}
+{% from "_formhelpers.html" import render_field %}
+<form method=post>
+	<dl>
+		{% for i in form %}
+			<input type="checkbox" name={{ loop.index }} value="0"> {{ i.label }}<br>
+		{% endfor %}
+		{{ render_field(form.distance) }}
+	</dl>
+	<input type="submit" value="Save">
+</form>
+{% endmacro %}

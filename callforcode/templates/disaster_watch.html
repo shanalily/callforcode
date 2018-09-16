@@ -1,10 +1,8 @@
 {% from "_navbar.html" import nav_bar with context %}
-{% from "_flashed_messages.html" import flashed_messages with context %}
-{% from "_formhelpers.html" import render_field %}
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Login</title>
+		<title>Settings</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -20,14 +18,7 @@
 		{{ nav_bar() }}
 
 		<div style="margin-left:340px;margin-right:40px">
-			<form method=post>
-			  <dl>
-			    {{ render_field(form.username) }}
-			    {{ render_field(form.password) }}
-			  </dl>
-			  <p><input type=submit value="Log In">
-			</form>
-			{{ flashed_messages() }}
+			<img src="/static/tornado_path.jpg" style="width:1200px;">
 		</div>
 	</body>
 </html>

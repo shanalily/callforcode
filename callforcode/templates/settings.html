@@ -1,5 +1,6 @@
 {% from "_navbar.html" import nav_bar with context %}
 {% from "_flashed_messages.html" import flashed_messages with context %}
+{% from "_formhelpers.html" import render_field with context %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,10 +20,15 @@
 		{{ nav_bar() }}
 
 		<div style="margin-left:340px;margin-right:40px;margin-top:40px">
+			<h2>I can provide...</h2>
 			<form method=post>
-				{% for i in form %}
-					<input type="checkbox" name={{ loop.index }} value="0"> {{ i.label }}<br>
-				{% endfor %}
+				<dl>
+					{% for i in form %}
+						<!-- accidentally showing distance traveled -->
+						<input type="checkbox" name={{ loop.index }} value="0"> {{ i.label }}<br>
+					{% endfor %}
+					{{ render_field(form.distance) }}
+				</dl>
 				<input type="submit" value="Save">
 			</form>
 			{{ flashed_messages() }}

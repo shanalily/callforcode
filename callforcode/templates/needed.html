@@ -1,6 +1,4 @@
 {% from "_navbar.html" import nav_bar with context %}
-{% from "_flashed_messages.html" import flashed_messages with context %}
-{% from "_formhelpers.html" import render_field %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,14 +18,7 @@
 		{{ nav_bar() }}
 
 		<div style="margin-left:340px;margin-right:40px">
-			<form method=post>
-			  <dl>
-			    {{ render_field(form.username) }}
-			    {{ render_field(form.password) }}
-			  </dl>
-			  <p><input type=submit value="Log In">
-			</form>
-			{{ flashed_messages() }}
+			<img src="/static/map_with_red_cross.jpg" style="width:1200px;">
 		</div>
 	</body>
 </html>
