@@ -1,6 +1,6 @@
 from callforcode import app, db
 from flask import request, render_template, redirect, url_for, flash
-from callforcode.models import User, registered_user, load_user
+from callforcode.models import User, Attributes, registered_user, load_user
 from callforcode.forms import LoginForm, RegisterForm, AttributesForm
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -59,10 +59,35 @@ def logout():
 @login_required
 def settings():
 	form = AttributesForm(request.form)
+	car = False
+	truck = False
+	boat = False
+	food = False
+	cpr = False
+	emt = False
+	contractor = False
+	labor = False
 	if request.method == 'POST' and form.validate():
-		req = request.form.getlist('option')
-		print("request", req)
-		return redirect(next or url_for('index'))
+		if request.form.get('1'):
+			car = True
+		if request.form.get('2'):
+			truck = True
+		if request.form.get('3'):
+			boat = True
+		if request.form.get('4'):
+			food = True
+		if request.form.get('5'):
+			cpr = True
+		if request.form.get('6'):
+			emt = True
+		if request.form.get('7'):
+			contractor = True
+		if request.form.get('8'):
+			labor = False
+		attributes = Attributes(car, truck, boat, food, cpr, emt, contractor, labor)
+		db.session.add(attributes)
+		db.session.commit()
+		return redirect(url_for('index'))
 	return render_template('settings.html', form=form)
 
 @app.route('/contact', methods=['GET', 'POST'])

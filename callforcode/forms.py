@@ -24,20 +24,6 @@ class RegisterForm(Form):
 		Form.__init__(self, *args, **kwargs)
 		self.user = None
 
-	# def validate(self):
-	# 	v = Form.validate(self)
-	# 	if not v:
-	# 		return False
-	# 	user = registered_user(self.username)
-	# 	if user != None:
-	# 		return False
-	# 	shortened_number = cell_number.replace('-', '')
-	# 	if len(shortened_number) != 10:
-	# 		return False
-	# 	if not shortened_number.isdigit():
-	# 		return False
-	# 	return True
-
 class AttributesForm(Form):
 	# qualities that user has that they can use to help others
 	# we will assign them to low, medium, or high risk zones for now

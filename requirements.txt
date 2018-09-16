@@ -4,3 +4,4 @@ psycopg2
 flask-bcrypt
 flask-login
 wtforms
+psycopg2

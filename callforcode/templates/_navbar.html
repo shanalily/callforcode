@@ -9,11 +9,11 @@
     <a href="#See What's Needed" class="w3-bar-item w3-button w3-hover-white">See What's Needed</a>
     <a href="#Disaster Watch" class="w3-bar-item w3-button w3-hover-white">Disaster Watch</a>
     <a href="{{ url_for('contact') }}" class="w3-bar-item w3-button w3-hover-white">Contact</a>
-    <a href="{{ url_for('settings') }}" class="w3-bar-item w3-button w3-hover-white">Settings</a>
-    {% if current_user.is_authenticated %}
+    {% if not current_user.is_authenticated %}
       <a href="{{ url_for('create_account') }}" class="w3-bar-item w3-button w3-hover-white">Register</a>
       <a href="{{ url_for('login') }}" class="w3-bar-item w3-button w3-hover-white">Login</a>
     {% else %}
+      <a href="{{ url_for('settings') }}" class="w3-bar-item w3-button w3-hover-white">Settings</a>
       <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-hover-white">Logout</a>
     {% endif %}
   </div>
