@@ -85,7 +85,7 @@ def settings():
 			contractor = True
 		if request.form.get('8'):
 			labor = True
-		distance = request.form['distance']
+		distance = int(request.form['distance'])
 		attributes = Attributes.query.filter_by(userid).first()
 		if attributes is None:
 			attributes = Attributes(userid, car, truck, boat, food, cpr, emt, contractor, labor, distance)
@@ -99,3 +99,11 @@ def settings():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
 	return render_template('contact.html')
+
+@app.route('/needed')
+def needed():
+	return render_template('needed.html')
+
+@app.route('/watch')
+def watch():
+	return render_template('disaster_watch.html')
