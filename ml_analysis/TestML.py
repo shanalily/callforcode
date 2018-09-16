@@ -10,6 +10,14 @@ import numpy as np
 import csv
 import random
 
+"""
+File to extract, clean, and prepare data to run on machine learning models.
+This code specifically was worked to take in data about property damage,
+deaths, and location to predict the class of the tornado.
+
+Initially tests performed at about 75% accuracy
+"""
+
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 def extract_features(all_data):
