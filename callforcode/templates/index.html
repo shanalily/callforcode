@@ -1,3 +1,5 @@
+{% from "_navbar.html" import nav_bar with context %}
+{% from "_flashed_messages.html" import flashed_messages with context %}
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -16,35 +18,21 @@ body {font-size:16px;}
 	</head>
 	<body>
 		<h1>Catchy Name</h1>
-	</body
-	<!-- Sidebar/menu -->
-	<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-	  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-	  <div class="w3-container">
-	    <h3 class="w3-padding-64"><b>Company<br>Name</b></h3>
-	  </div>
-	  <div class="w3-bar-block">
-	    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
-	    <a href="#Register" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Register</a>
-	    <a href="#Login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
-	    <a href="#See What's Needed" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">See What's Needed</a>
-	    <a href="#Disaster Watch" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Disaster Watch</a>
-	    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
-	  </div>
-	</nav>
+	</body>
+	{{ nav_bar() }}
 
 	<!-- !PAGE CONTENT! -->
-	<div class="w3-main" style="margin-left:340px;margin-right:40px">
+	<div style="margin-left:340px;margin-right:40px">
 
 	  <!-- Header -->
-	  <div class="w3-container" style="margin-top:80px" id="showcase">
-	    <h1 class="w3-jumbo"><b>CATCHY NAME</b></h1>
-	    <h1 class="w3-xxxlarge w3-text-red"><b>Getting help where it's needed most.</b></h1>
+	  <div style="margin-top:80px" id="showcase">
+	    <h1><b>CATCHY NAME</b></h1>
+	    <h1 w3-text-red"><b>Getting help where it's needed most.</b></h1>
 	    <hr style="width:50px;border:5px solid red" class="w3-round">
 	  </div>
 		<!-- What we do -->
-	  <div class="w3-container" id="services" style="margin-top:75px">
-	    <h1 class="w3-xxxlarge w3-text-red"><b>Smart risk assessment + efficient volunteer allocation = more lives saved.</b></h1>
+	  <div id="services" style="margin-top:75px">
+	    <h1 w3-text-red"><b>Smart risk assessment + efficient volunteer allocation = more lives saved.</b></h1>
 	    <hr style="width:50px;border:5px solid red" class="w3-round">
 	    <p>We provide the tools to get volunteers where they're needed most, while employing the latest technologies to assess disaster damage and risk.</p>
 	    <p>When diasaster strikes and help is desperately needed, one of the most signficant contributors to the chaos is misallocation and disorganization of volunteers
@@ -54,5 +42,6 @@ body {font-size:16px;}
 				ways to allocate volunteers, while determining levels of risk due to disaster damage in order to ensure that volunteers arrive with
 				the aid equipment most useful for saving victims and to ensure volunteer and victim safety as well.
 	    </p>
+	    {{ flashed_messages() }}
 	  </div>
 </html>

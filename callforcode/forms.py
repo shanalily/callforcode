@@ -14,7 +14,8 @@ class RegisterForm(Form):
 	last =  TextField('Last Name', validators=[validators.required()])
 
 	email = TextField('Email', validators=[validators.required()])
-	cell_number = TextField('Cell Number', validators=[validators.required()]) # for now
+	cell_number = TextField('Cell Number', validators=[
+		validators.required(), validators.Length(min=10, max=14), validators.Regexp("[0-9]+")]) # for now
 
 	city = TextField('City', validators=[validators.required()])
 	state = SelectField('State', choices=states, validators=[validators.required()])
@@ -27,7 +28,7 @@ class RegisterForm(Form):
 	# 	v = Form.validate(self)
 	# 	if not v:
 	# 		return False
-	# 	user = registered_user(self.username, self.password)
+	# 	user = registered_user(self.username)
 	# 	if user != None:
 	# 		return False
 	# 	shortened_number = cell_number.replace('-', '')
