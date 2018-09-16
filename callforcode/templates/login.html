@@ -1,5 +1,6 @@
 {% from "_navbar.html" import nav_bar with context %}
 {% from "_flashed_messages.html" import flashed_messages with context %}
+{% from "_formhelpers.html" import render_field %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,7 +20,6 @@
 		{{ nav_bar() }}
 
 		<div style="margin-left:340px;margin-right:40px">
-			{% from "_formhelpers.html" import render_field %}
 			<form method=post>
 			  <dl>
 			    {{ render_field(form.username) }}

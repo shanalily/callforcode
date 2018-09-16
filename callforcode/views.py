@@ -68,6 +68,7 @@ def settings():
 	contractor = False
 	labor = False
 	if request.method == 'POST' and form.validate():
+		userid = current_user.get_id()
 		if request.form.get('1'):
 			car = True
 		if request.form.get('2'):
@@ -83,10 +84,15 @@ def settings():
 		if request.form.get('7'):
 			contractor = True
 		if request.form.get('8'):
-			labor = False
-		attributes = Attributes(car, truck, boat, food, cpr, emt, contractor, labor)
-		db.session.add(attributes)
-		db.session.commit()
+			labor = True
+		distance = request.form['distance']
+		attributes = Attributes.query.filter_by(userid).first()
+		if attributes is None:
+			attributes = Attributes(userid, car, truck, boat, food, cpr, emt, contractor, labor, distance)
+			db.session.add(attributes)
+			db.session.commit(car, truck, boat, food, cpr, emt, contractor, labor, distance)
+		else:
+			attributes.update(car, truck, boat, food, cpr, emt, contractor, labor, distance)
 		return redirect(url_for('index'))
 	return render_template('settings.html', form=form)
 

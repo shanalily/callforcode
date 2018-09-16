@@ -7,8 +7,8 @@ class LoginForm(Form):
 	password = TextField('Password', validators=[validators.required()])
 
 class RegisterForm(Form):
-	username = TextField('Username', validators=[validators.required()])
-	password = TextField('Password', validators=[validators.required()])
+	username = TextField('Username', validators=[validators.required(), validators.Length(min=6)])
+	password = TextField('Password', validators=[validators.required(), validators.Length(min=8)])
 
 	first =  TextField('First Name', validators=[validators.required()])
 	last =  TextField('Last Name', validators=[validators.required()])
@@ -38,3 +38,6 @@ class AttributesForm(Form):
 	contractor = BooleanField("I am a general contractor")
 
 	labor = BooleanField("I can provide manual labor")
+	distance = SelectField("Distance willing to travel",
+		choices=[(10, "10 miles"), (50, "50 miles"), (100, "100 miles"), (2680, "across the country")],
+		validators=[validators.required()])
