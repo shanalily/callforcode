@@ -20,9 +20,11 @@
 		{{ nav_bar() }}
 
 		<div style="margin-left:340px;margin-right:40px;margin-top:40px">
+			<h2>I can provide...</h2>
 			<form method=post>
 				<dl>
 					{% for i in form %}
+						<!-- accidentally showing distance traveled -->
 						<input type="checkbox" name={{ loop.index }} value="0"> {{ i.label }}<br>
 					{% endfor %}
 					{{ render_field(form.distance) }}

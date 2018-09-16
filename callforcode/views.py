@@ -67,7 +67,7 @@ def settings():
 	emt = False
 	contractor = False
 	labor = False
-	if request.method == 'POST' and form.validate():
+	if request.method == 'POST': # should have form.validate() but I'm not sure why validation is failing
 		userid = current_user.get_id()
 		if request.form.get('1'):
 			car = True
@@ -86,11 +86,11 @@ def settings():
 		if request.form.get('8'):
 			labor = True
 		distance = int(request.form['distance'])
-		attributes = Attributes.query.filter_by(userid).first()
+		attributes = Attributes.query.filter_by(userid=userid).first()
 		if attributes is None:
 			attributes = Attributes(userid, car, truck, boat, food, cpr, emt, contractor, labor, distance)
 			db.session.add(attributes)
-			db.session.commit(car, truck, boat, food, cpr, emt, contractor, labor, distance)
+			db.session.commit()
 		else:
 			attributes.update(car, truck, boat, food, cpr, emt, contractor, labor, distance)
 		return redirect(url_for('index'))

@@ -1,7 +1,16 @@
 # Call for Code project
 
+## Requiremetns
+Python 3.5.2 and above
+Postgres 9.5.13 and above
+
 ## Developer Instructions
 
+Clone repository:
+```
+git clone git@github.com:shanalily/callforcode.git
+cd callforcode
+```
 Install requirements:
 ```
 pip install -r requirements.txt
@@ -12,7 +21,7 @@ CREATE DATABASE callforcode;
 ```
 Set environment variable for database URL.
 ```
-export SQLALCHEMY_DATABASE_URI = *your database uri*
+export SQLALCHEMY_DATABASE_URI="postgres://<role>:<password>@localhost/<dbname>"
 ```
 
 To run the application:
