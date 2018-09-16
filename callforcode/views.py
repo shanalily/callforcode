@@ -23,7 +23,7 @@ def login():
 			return redirect(url_for('login'))
 		login_user(user, True)
 		flash('Logged in successfully')
-		return redirect(next or url_for('index'))
+		return redirect(url_for('index'))
 	return render_template('login.html', form=form)
 
 @app.route('/create-account', methods=['GET', 'POST'])

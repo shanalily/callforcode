@@ -65,6 +65,16 @@ class Attributes(db.Model):
 
 	labor = db.Column(db.Boolean())
 
+	def __init__(self, car, truck, boat, food, cpr, emt, contractor, labor):
+		self.car = car
+		self.truck = truck
+		self.boat = boat
+		self.food = food
+		self.cpr = cpr
+		self.emt = emt
+		self.contractor = contractor
+		self.labor = labor
+
 @login_manager.user_loader
 def load_user(id):
 	return User.query.get(int(id))
