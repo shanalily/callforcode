@@ -1,8 +1,9 @@
 # Call for Code project
 
-## Requiremetns
-Python 3.5.2 and above
-Postgres 9.5.13 and above
+## Requirements
+
+* Python 3.5.2 and above
+* Postgres 9.5.13 and above
 
 ## Developer Instructions
 

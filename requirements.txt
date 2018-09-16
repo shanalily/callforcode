@@ -5,3 +5,7 @@ flask-bcrypt
 flask-login
 wtforms
 psycopg2
+numpy
+matplotlib
+networkx
+sklearn
